@@ -245,6 +245,7 @@ fn client_for(profile: Profile, platform: Platform) -> WreqClient {
 	let builder = WreqClient::builder()
 		.emulation(Emulation::builder().profile(profile).platform(platform).build())
 		.redirect(Policy::none())
+		.http1_only()
 		.dns_resolver(RedgifsIpv4Resolver);
 	match CA_STORE.get() {
 		Some(store) => builder.tls_cert_store(store.clone()),
